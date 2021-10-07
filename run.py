@@ -12,10 +12,19 @@ def choose_game_type():
     columns = rows 
     board_one = user_board(rows, columns)
     board_two = computer_board(rows, columns)
+    
     user_first_choice = users_choice(board_two)
     print_board(user_first_choice)
+
     computer_first_choice = computer_choice(board_one, rows, columns)
     print_board(computer_first_choice)
+
+    for x in range(100):
+        user_first_choice = users_choice(user_first_choice)
+        print_board(user_first_choice)
+
+        computer_first_choice = computer_choice(computer_first_choice, rows, columns)
+        print_board(computer_first_choice)
 
 def user_board(rows, columns):
     game_board = []
@@ -81,19 +90,27 @@ def users_choice(board_two):
     check_hit(board_two, user_row, user_column)
     return check_hit(board_two, user_row, user_column)
 
+def check_hit(board_two, user_row, user_column):
+    print(board_two)
+    if board_two[user_row][user_column] == '.':
+        board_two[user_row][user_column] = "M"
+    elif board_two[user_row][user_column] == '#':
+        board_two[user_row][user_column] = "X"
+    return board_two
+
 def computer_choice(board_one, rows, columns):
     user_row = int(random.randrange(rows))
     user_column = int(random.randrange(columns))
     check_hit(board_one, user_row, user_column)
     return check_hit(board_one, user_row, user_column)
 
-def check_hit(board_type, user_row, user_column):
-    print(board_type)
-    if board_type[user_row][user_column] == '.':
-        board_type[user_row][user_column] = "M"
-    elif board_type[user_row][user_column] == '#':
-        board_type[user_row][user_column] = "X"
-    return board_type
+def check_hit(board_one, user_row, user_column):
+    print(board_one)
+    if board_one[user_row][user_column] == '.':
+        board_one[user_row][user_column] = "M"
+    elif board_one[user_row][user_column] == '#':
+        board_one[user_row][user_column] = "X"
+    return board_one
 
         
         # while (a, b) != (c, d):
