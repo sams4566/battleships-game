@@ -1,21 +1,21 @@
 from pprint import pprint
 import random
 
-SHIP = '#'
-HIT = 'X'
-MISS = 'M'
-
 
 def start_game():
     print("Welcome to Battleships!")
     player_name = input("Please enter your name:\n")
     choose_game_type()
-    
+  
 def choose_game_type():
-    rows = int(input("Please type the number of rows you would like to play with:\n"))
-    columns = int(input("Please type the number of columns you would like to play with:\n"))
-    board = user_board(rows, columns)
-    print_board(board)
+    rows = int(input("Please type the number of rows and columns you would like to play with:\n"))
+    columns = rows 
+    board_one = user_board(rows, columns)
+    board_two = computer_board(rows, columns)
+    user_first_choice = users_choice(board_two)
+    print_board(user_first_choice)
+    computer_first_choice = computer_choice(board_one, rows, columns)
+    print_board(computer_first_choice)
 
 def user_board(rows, columns):
     game_board = []
@@ -25,36 +25,106 @@ def user_board(rows, columns):
             game_board_row.append(".")
         game_board.append(game_board_row)
     no_of_ships(game_board, rows, columns)
-    print(game_board)
+    print_board(game_board)
+    print("Your board")
     return game_board
 
-def no_of_ships(game_board, x, y):
-    game_board[random.randrange(x)][random.randrange(y)] = "@"
+def computer_board(rows, columns):
+    game_board = []
+    for y in range(columns):
+        game_board_row = []
+        for x in range(rows):
+            game_board_row.append(".")
+        game_board.append(game_board_row)
+    no_of_ships(game_board, rows, columns)
+    print_board(game_board)
+    print("Computer's board")
+    return game_board
+
+def no_of_ships(game_board, rows, columns):
+    if rows == 4:
+        game_board[random.randrange(rows)][random.randrange(columns)] = "#"
+        game_board[random.randrange(rows)][random.randrange(columns)] = "#"
+        game_board[random.randrange(rows)][random.randrange(columns)] = "#"
+        game_board[random.randrange(rows)][random.randrange(columns)] = "#"
+        game_board[random.randrange(rows)][random.randrange(columns)] = "#"
+        game_board[random.randrange(rows)][random.randrange(columns)] = "#"
+        game_board[random.randrange(rows)][random.randrange(columns)] = "#"
+        game_board[random.randrange(rows)][random.randrange(columns)] = "#"
+        game_board[random.randrange(rows)][random.randrange(columns)] = "#"
+        game_board[random.randrange(rows)][random.randrange(columns)] = "#"
+        game_board[random.randrange(rows)][random.randrange(columns)] = "#"
+        game_board[random.randrange(rows)][random.randrange(columns)] = "#"
+        game_board[random.randrange(rows)][random.randrange(columns)] = "#"
+        game_board[random.randrange(rows)][random.randrange(columns)] = "#"
+        game_board[random.randrange(rows)][random.randrange(columns)] = "#"
+        game_board[random.randrange(rows)][random.randrange(columns)] = "#"
+        game_board[random.randrange(rows)][random.randrange(columns)] = "#"
+        game_board[random.randrange(rows)][random.randrange(columns)] = "#"
+
+
+    if rows == 5:
+        game_board[random.randrange(rows)][random.randrange(columns)] = "#"
+
+    if rows == 6:
+        game_board[random.randrange(rows)][random.randrange(columns)] = "#"
+
+    if rows == 7:
+        game_board[random.randrange(rows)][random.randrange(columns)] = "#"
+
+    if rows == 8:
+        game_board[random.randrange(rows)][random.randrange(columns)] = "#"
+
+def users_choice(board_two):
+    user_row = int(input("Please type the first number of your coordinate:\n"))
+    user_column = int(input("Please type the second number of your coordinate:\n"))
+    check_hit(board_two, user_row, user_column)
+    return check_hit(board_two, user_row, user_column)
+
+def computer_choice(board_one, rows, columns):
+    user_row = int(random.randrange(rows))
+    user_column = int(random.randrange(columns))
+    check_hit(board_one, user_row, user_column)
+    return check_hit(board_one, user_row, user_column)
+
+def check_hit(board_type, user_row, user_column):
+    print(board_type)
+    if board_type[user_row][user_column] == '.':
+        board_type[user_row][user_column] = "M"
+    elif board_type[user_row][user_column] == '#':
+        board_type[user_row][user_column] = "X"
+    return board_type
+
+        
+        # while (a, b) != (c, d):
+
+        # while game_board[rows] == '.':
+        #     a = random.randrange(rows)
+        #     b = random.randrange(columns)
+        #     if game_board[a][b] == "#":
+        #         game_board[a][b] = '#'
+        #     elif game_board[a][b] == ".":
+        #         game_board[a][b] = '#'
+        
+        # c = random.randrange(rows)
+        # d = random.randrange(columns)
+        # if game_board[c][d] != "#":
+        #     game_board[c][d] = '#'
+
+        # if game_board[random.randrange(rows)][random.randrange(columns)] != "#":
+        #     game_board[random.randrange(rows)][random.randrange(rows)] = '#'
 
 def print_board(board):
     for row in board:
         print('| ' + ' | '.join(row) + ' |')
 
-# def add_ship(x, y, type="computer"):
-#     ships.append((x, y))
-#     board[x][y] = "@"
 
 
-def computer_board(rows, columns):
-    game_board = [["." for x in range(rows)] for y in range(columns)]
-    for row in game_board:
-        print(" ".join(row))
 
 def main():
     start_game()
 
 main()
-
-
-# def user_board(size):
-#     game_board = [["." for x in range(size)] for y in range(size)]
-#     for row in game_board:
-#             print(" ".join(row))
 
 # def user_choice():
 
