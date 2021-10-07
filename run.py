@@ -1,5 +1,5 @@
 from pprint import pprint
-from random import randint
+import random
 
 SHIP = '#'
 HIT = 'X'
@@ -18,22 +18,26 @@ def choose_game_type():
     print_board(board)
 
 def user_board(rows, columns):
-    # game_board = [["." for x in range(rows)] for y in range(columns)]
-    # for row in game_board:
-    #     print(" ".join(row))
-
     game_board = []
     for y in range(columns):
         game_board_row = []
         for x in range(rows):
             game_board_row.append(".")
         game_board.append(game_board_row)
+    no_of_ships(game_board, rows, columns)
     print(game_board)
     return game_board
+
+def no_of_ships(game_board, x, y):
+    game_board[random.randrange(x)][random.randrange(y)] = "@"
 
 def print_board(board):
     for row in board:
         print('| ' + ' | '.join(row) + ' |')
+
+# def add_ship(x, y, type="computer"):
+#     ships.append((x, y))
+#     board[x][y] = "@"
 
 
 def computer_board(rows, columns):
