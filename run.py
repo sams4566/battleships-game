@@ -22,7 +22,7 @@ def choose_game_type():
 
         print_board(board_one, rows)
         print("Your Board")
-        print_board(board_two, rows)
+        print_board2(board_two, rows)
         print("Computer's Board")
 
         print(f"This is your score:{SCORE1}")
@@ -75,19 +75,25 @@ def calculate_ships(game_board, rows, columns):
 def users_choice(board_two, rows, SCORE1):
     user_row = int(input("Please type the first number of your coordinate:\n"))
     user_column = int(input("Please type the second number of your coordinate:\n"))
-    print("Hello there")
-    if board_two[user_row][user_column] == '.':
-        board_two[user_row][user_column] = "M"
-    elif board_two[user_row][user_column] == '#':
-        board_two[user_row][user_column] = "X"
-        SCORE1 = scores1(SCORE1, rows)
-    elif board_two[user_row][user_column] == "M":
-        print("You have already chosen that coordinate, please choose again!")
+
+    if user_row < rows and user_row >= 0 and user_column < rows and user_column >= 0:
+        print("Hello there")
+        if board_two[user_row][user_column] == ".":
+            board_two[user_row][user_column] = "M"
+        elif board_two[user_row][user_column] == '#':
+            board_two[user_row][user_column] = "X"
+            SCORE1 = scores1(SCORE1, rows)
+        elif board_two[user_row][user_column] == "M":
+            print("You have already chosen that coordinate, please choose again!")
+            users_choice(board_two, rows, SCORE1)
+        elif board_two[user_row][user_column] == "X":
+            print("You have already chosen that coordinate, please choose again!")
+            users_choice(board_two, rows, SCORE1)
+        return board_two, SCORE1
+        
+    else:
+        print(f"Please choose a number between 0 - {rows - 1}")
         users_choice(board_two, rows, SCORE1)
-    elif board_two[user_row][user_column] == "X":
-        print("You have already chosen that coordinate, please choose again!")
-        users_choice(board_two, rows, SCORE1)
-    return board_two, SCORE1
 
 def scores1(SCORE1, rows):
     SCORE1 = SCORE1 + 1
@@ -112,13 +118,33 @@ def scores2(SCORE2, rows):
     return SCORE2
 
 def print_board(board, rows):
-    print(' ' + ' _' * rows * 2)
+    print('  ' + f'_{rows - (rows)}_' + f' _{rows - (rows - 1)}_ ' + f' _{rows - (rows - 2)}_ ' + f' _{rows - (rows - 3)}_ ' + f' _{rows - (rows - 4)}_ ')
 
     for row, x in zip(board, range(rows)):
         print(f'{x}| ' + '   '.join(row) + ' |')
     print(' ' + ' ‾' * rows * 2)
 
+def print_board2(board, rows):
+    
+    for x, y in zip(range(rows), range(rows)):
+        while board[x][y] == "#":
+            hide_ships(board, rows)   
 
+    print("The is print_board2") 
+    
+    print('  ' + f'_{rows - (rows)}_' + f' _{rows - (rows - 1)}_ ' + f' _{rows - (rows - 2)}_ ' + f' _{rows - (rows - 3)}_ ' + f' _{rows - (rows - 4)}_ ')
+
+    for row, x in zip(board, range(rows)):
+        print(f'{x}| ' + '   '.join(row) + ' |')
+    print(' ' + ' ‾' * rows * 2)
+
+def hide_ships(board, rows):
+    a = random.randrange(rows)
+    b = random.randrange(rows)
+    if board[a][b] == "#":
+        board[a][b] = "."
+    elif board[a][b] == ".":
+        hide_ships(board, rows)
 
 
 
