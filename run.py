@@ -1,6 +1,7 @@
 from pprint import pprint
 import random
 
+
 def start_game():
     print("Welcome to Battleships!")
     player_name = input("Please enter your name:\n")
@@ -17,13 +18,14 @@ def choose_game_type():
     for x in range(100):
         board_one, SCORE2 = computer_choice(board_one, rows, columns, SCORE2)
         board_two, SCORE1 = users_choice(board_two, rows, SCORE1)
+    
 
-        print_board(board_one)
+        print_board(board_one, rows)
         print("Your Board")
-        print_board(board_two)
+        print_board(board_two, rows)
         print("Computer's Board")
 
-        print(f"This is your new score:{SCORE1}")
+        print(f"This is your score:{SCORE1}")
         print(f"This is the Computers score:{SCORE2}")
 
         if SCORE1 == rows:
@@ -42,8 +44,9 @@ def user_board(rows, columns):
         for x in range(rows):
             game_board_row.append(".")
         game_board.append(game_board_row)
-    no_of_ships(game_board, rows, columns)
-    print_board(game_board)
+    for x in range(rows):
+        calculate_ships(game_board, rows, columns)
+    print_board(game_board, rows)
     print("Your board")
     return game_board
 
@@ -54,44 +57,20 @@ def computer_board(rows, columns):
         for x in range(rows):
             game_board_row.append(".")
         game_board.append(game_board_row)
-    no_of_ships(game_board, rows, columns)
-    print_board(game_board)
+    for x in range(rows):
+        calculate_ships(game_board, rows, columns)
+    print_board(game_board, rows)
     print("Computer's board")
     return game_board
 
-def no_of_ships(game_board, rows, columns):
-    if rows == 4:
-        game_board[random.randrange(rows)][random.randrange(columns)] = "#"
-        game_board[random.randrange(rows)][random.randrange(columns)] = "#"
-        game_board[random.randrange(rows)][random.randrange(columns)] = "#"
-        game_board[random.randrange(rows)][random.randrange(columns)] = "#"
-        game_board[random.randrange(rows)][random.randrange(columns)] = "#"
-        game_board[random.randrange(rows)][random.randrange(columns)] = "#"
-        game_board[random.randrange(rows)][random.randrange(columns)] = "#"
-        game_board[random.randrange(rows)][random.randrange(columns)] = "#"
-        game_board[random.randrange(rows)][random.randrange(columns)] = "#"
-        game_board[random.randrange(rows)][random.randrange(columns)] = "#"
-        game_board[random.randrange(rows)][random.randrange(columns)] = "#"
-        game_board[random.randrange(rows)][random.randrange(columns)] = "#"
-        game_board[random.randrange(rows)][random.randrange(columns)] = "#"
-        game_board[random.randrange(rows)][random.randrange(columns)] = "#"
-        game_board[random.randrange(rows)][random.randrange(columns)] = "#"
-        game_board[random.randrange(rows)][random.randrange(columns)] = "#"
-        game_board[random.randrange(rows)][random.randrange(columns)] = "#"
-        game_board[random.randrange(rows)][random.randrange(columns)] = "#"
-
-
-    if rows == 5:
-        game_board[random.randrange(rows)][random.randrange(columns)] = "#"
-
-    if rows == 6:
-        game_board[random.randrange(rows)][random.randrange(columns)] = "#"
-
-    if rows == 7:
-        game_board[random.randrange(rows)][random.randrange(columns)] = "#"
-
-    if rows == 8:
-        game_board[random.randrange(rows)][random.randrange(columns)] = "#"
+def calculate_ships(game_board, rows, columns):
+    a = random.randrange(rows)
+    b = random.randrange(columns)
+    if game_board[a][b] == ".":
+        game_board[a][b] = "#"
+    elif game_board[a][b] == "#":
+        calculate_ships(game_board, rows, columns)
+    return game_board
 
 def users_choice(board_two, rows, SCORE1):
     user_row = int(input("Please type the first number of your coordinate:\n"))
@@ -108,7 +87,6 @@ def users_choice(board_two, rows, SCORE1):
     elif board_two[user_row][user_column] == "X":
         print("You have already chosen that coordinate, please choose again!")
         users_choice(board_two, rows, SCORE1)
-
     return board_two, SCORE1
 
 def scores1(SCORE1, rows):
@@ -123,39 +101,23 @@ def computer_choice(board_one, rows, columns, SCORE2):
     elif board_one[user_row][user_column] == '#':
         board_one[user_row][user_column] = "X"
         SCORE2 = scores2(SCORE2, rows)
-     elif board_two[user_row][user_column] == "M":
-        print("You have already chosen that coordinate, please choose again!")
+    elif board_one[user_row][user_column] == "M":
         computer_choice(board_one, rows, columns, SCORE2)
-    elif board_two[user_row][user_column] == "X":
-        print("You have already chosen that coordinate, please choose again!")
+    elif board_one[user_row][user_column] == "X":
         computer_choice(board_one, rows, columns, SCORE2)
     return board_one, SCORE2
 
 def scores2(SCORE2, rows):
     SCORE2 = SCORE2 + 1
     return SCORE2
-        
-        # while (a, b) != (c, d):
 
-        # while game_board[rows] == '.':
-        #     a = random.randrange(rows)
-        #     b = random.randrange(columns)
-        #     if game_board[a][b] == "#":
-        #         game_board[a][b] = '#'
-        #     elif game_board[a][b] == ".":
-        #         game_board[a][b] = '#'
-        
-        # c = random.randrange(rows)
-        # d = random.randrange(columns)
-        # if game_board[c][d] != "#":
-        #     game_board[c][d] = '#'
+def print_board(board, rows):
+    print(' ' + ' _' * rows * 2)
 
-        # if game_board[random.randrange(rows)][random.randrange(columns)] != "#":
-        #     game_board[random.randrange(rows)][random.randrange(rows)] = '#'
+    for row, x in zip(board, range(rows)):
+        print(f'{x}| ' + '   '.join(row) + ' |')
+    print(' ' + ' ‾' * rows * 2)
 
-def print_board(board):
-    for row in board:
-        print('| ' + ' | '.join(row) + ' |')
 
 
 
