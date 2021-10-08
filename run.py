@@ -44,7 +44,7 @@ def user_board(rows, columns):
         for x in range(rows):
             game_board_row.append(".")
         game_board.append(game_board_row)
-    for x in range(rows):
+    for x in range(12):
         calculate_ships(game_board, rows, columns)
     print_board(game_board, rows)
     print("Your board")
@@ -57,7 +57,7 @@ def computer_board(rows, columns):
         for x in range(rows):
             game_board_row.append(".")
         game_board.append(game_board_row)
-    for x in range(rows):
+    for x in range(12):
         calculate_ships(game_board, rows, columns)
     print_board(game_board, rows)
     print("Computer's board")
@@ -91,7 +91,7 @@ def users_choice(board_two, rows, SCORE1):
             users_choice(board_two, rows, SCORE1)
         return board_two, SCORE1
         
-    else:
+    elif user_row != int:
         print(f"Please choose a number between 0 - {rows - 1}")
         users_choice(board_two, rows, SCORE1)
 
@@ -126,9 +126,13 @@ def print_board(board, rows):
 
 def print_board2(board, rows):
     
-    for x, y in zip(range(rows), range(rows)):
-        while board[x][y] == "#":
-            hide_ships(board, rows)   
+    for x in range(rows):
+        for y in range(rows):
+            if board[x][y] == "#":
+                board[x][y] = "@"
+
+        # elif board[x][y] == ".":
+        #     hide_ships(board, rows)  
 
     print("The is print_board2") 
     
@@ -138,13 +142,11 @@ def print_board2(board, rows):
         print(f'{x}| ' + '   '.join(row) + ' |')
     print(' ' + ' ‾' * rows * 2)
 
-def hide_ships(board, rows):
-    a = random.randrange(rows)
-    b = random.randrange(rows)
-    if board[a][b] == "#":
-        board[a][b] = "."
-    elif board[a][b] == ".":
-        hide_ships(board, rows)
+# def hide_ships(board, x, y):
+#     if board[x][y] == "#":
+#         board[x][y] = "."
+#     elif board[x][y] == ".":
+#         hide_ships(board, rows)
 
 
 
