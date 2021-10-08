@@ -1,7 +1,6 @@
 from pprint import pprint
 import random
 
-
 def start_game():
     print("Welcome to Battleships!")
     player_name = input("Please enter your name:\n")
@@ -12,23 +11,29 @@ def choose_game_type():
     columns = rows 
     board_one = user_board(rows, columns)
     board_two = computer_board(rows, columns)
-    score = 0
-    print(f"This is your score {score}")
+    SCORE1 = 0
+    SCORE2 = 0
     
     for x in range(100):
-        user_first_choice, score1 = users_choice(board_two)
-        print_board(user_first_choice)
-        print(f"This is your score {score1}")
+        board_one, SCORE2 = computer_choice(board_one, rows, columns, SCORE2)
+        board_two, SCORE1 = users_choice(board_two, rows, SCORE1)
 
-        computer_first_choice = computer_choice(board_one, rows, columns)
-        print_board(computer_first_choice)
+        print_board(board_one)
+        print("Your Board")
+        print_board(board_two)
+        print("Computer's Board")
 
-    # for x in range(100):
-    #     user_first_choice = users_choice(user_first_choice)
-    #     print_board(user_first_choice)
+        print(f"This is your new score:{SCORE1}")
+        print(f"This is the Computers score:{SCORE2}")
 
-    #     computer_first_choice = computer_choice(computer_first_choice, rows, columns)
-    #     print_board(computer_first_choice)
+        if SCORE1 == rows:
+            print("You Win!")
+            start_game()
+
+        if SCORE2 == rows:
+            print("Computer Wins!")
+            start_game()
+
 
 def user_board(rows, columns):
     game_board = []
@@ -88,38 +93,47 @@ def no_of_ships(game_board, rows, columns):
     if rows == 8:
         game_board[random.randrange(rows)][random.randrange(columns)] = "#"
 
-def users_choice(board_two):
+def users_choice(board_two, rows, SCORE1):
     user_row = int(input("Please type the first number of your coordinate:\n"))
     user_column = int(input("Please type the second number of your coordinate:\n"))
-    check_hit(board_two, user_row, user_column)
-    return check_hit(board_two, user_row, user_column)
-
-def check_hit(board_two, user_row, user_column):
-    print(board_two)
+    print("Hello there")
     if board_two[user_row][user_column] == '.':
         board_two[user_row][user_column] = "M"
     elif board_two[user_row][user_column] == '#':
         board_two[user_row][user_column] = "X"
-        score = score + 1
-    return board_two, score
+        SCORE1 = scores1(SCORE1, rows)
+    elif board_two[user_row][user_column] == "M":
+        print("You have already chosen that coordinate, please choose again!")
+        users_choice(board_two, rows, SCORE1)
+    elif board_two[user_row][user_column] == "X":
+        print("You have already chosen that coordinate, please choose again!")
+        users_choice(board_two, rows, SCORE1)
 
-def computer_choice(board_one, rows, columns):
+    return board_two, SCORE1
+
+def scores1(SCORE1, rows):
+    SCORE1 = SCORE1 + 1
+    return SCORE1
+
+def computer_choice(board_one, rows, columns, SCORE2):
     user_row = int(random.randrange(rows))
     user_column = int(random.randrange(columns))
-    check_hit(board_one, user_row, user_column)
-    return check_hit(board_one, user_row, user_column)
-
-def check_hit(board_one, user_row, user_column):
-    print(board_one)
     if board_one[user_row][user_column] == '.':
         board_one[user_row][user_column] = "M"
     elif board_one[user_row][user_column] == '#':
         board_one[user_row][user_column] = "X"
-        score = 0
-        def score():
-            score += 1
-    return board_one
+        SCORE2 = scores2(SCORE2, rows)
+     elif board_two[user_row][user_column] == "M":
+        print("You have already chosen that coordinate, please choose again!")
+        computer_choice(board_one, rows, columns, SCORE2)
+    elif board_two[user_row][user_column] == "X":
+        print("You have already chosen that coordinate, please choose again!")
+        computer_choice(board_one, rows, columns, SCORE2)
+    return board_one, SCORE2
 
+def scores2(SCORE2, rows):
+    SCORE2 = SCORE2 + 1
+    return SCORE2
         
         # while (a, b) != (c, d):
 
