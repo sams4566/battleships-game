@@ -6,9 +6,25 @@ def start_game():
     print("Welcome to Battleships!")
     player_name = input("Please enter your name:\n")
     choose_game_type()
+
+
+def no_of_rows():
+    while True:
+        rows = input("Please type the number of rows and columns you would like to play with:\n")
+        try:
+            if int(rows) < 4 or int(rows) > 10:
+                f"Please choose a number between 4 - 8"
+        except ValueError as e:
+            print(f"Invalid entry: {e}, please choose a number between 4 - 8\n")
+        
+        if int(rows) >= 4 or int(rows) <= 10:
+            break
+        
+    return int(rows)
+            
   
 def choose_game_type():
-    rows = int(input("Please type the number of rows and columns you would like to play with:\n"))
+    rows = no_of_rows()
     columns = rows 
     board_one = user_board(rows, columns)
     board_two = computer_board(rows, columns)
@@ -36,8 +52,9 @@ def choose_game_type():
         print(f"This is your score:{SCORE1}")
         print(f"This is the Computers score:{SCORE2}")
 
-        if SCORE1 == SCORE2:
+        if SCORE1 and SCORE2 == rows:
             print("It's a Draw!")
+            start_game()
 
         if SCORE1 == rows:
             print("You Win!")
