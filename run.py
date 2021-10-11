@@ -142,6 +142,11 @@ def print_board2(board, rows):
         print(f'{x}| ' + '   '.join(row) + ' |')
     print(' ' + ' ‾' * rows * 2)
 
+    for x in range(rows):
+        for y in range(rows):
+            if board[x][y] == "@":
+                board[x][y] = "#"
+
 # def hide_ships(board, x, y):
 #     if board[x][y] == "#":
 #         board[x][y] = "."
