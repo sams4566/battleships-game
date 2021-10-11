@@ -36,6 +36,9 @@ def choose_game_type():
         print(f"This is your score:{SCORE1}")
         print(f"This is the Computers score:{SCORE2}")
 
+        if SCORE1 == SCORE2:
+            print("It's a Draw!")
+
         if SCORE1 == rows:
             print("You Win!")
             start_game()
@@ -82,7 +85,6 @@ def calculate_ships(game_board, rows, columns):
 
 def users_choice(board_two, rows, SCORE1):
     
-     
     while True:
         user_row1 = input("Please type the first number of your coordinate:\n")
         user_column1 = input("Please type the second number of your coordinate:\n")
@@ -101,7 +103,6 @@ def users_choice(board_two, rows, SCORE1):
     user_row1 = int(user_row1)
     user_column1 = int(user_column1)
 
-    # if user_row1 < rows and user_row1 >= 0 and user_column1 < rows and user_column1 >= 0:
     print("Hello there")
     if board_two[user_row1][user_column1] == ".":
         board_two[user_row1][user_column1] = "M"
@@ -137,22 +138,38 @@ def correct_input2(user_column1, rows):
     return True
 
 def computer_choice(board_one, rows, columns, SCORE2):
-    user_row = int(random.randrange(rows))
-    user_column = int(random.randrange(columns))
-    if board_one[user_row][user_column] == '.':
+    # user_row = int(random.randrange(rows))
+    # user_column = int(random.randrange(columns))
+    # if board_one[user_row][user_column] == '.':
+    #     board_one[user_row][user_column] = "M"
+    # elif board_one[user_row][user_column] == '#':
+    #     board_one[user_row][user_column] = "X"
+    #     SCORE2 = scores2(SCORE2, rows)
+    # elif board_one[user_row][user_column] == "M":
+    #     computer_choice(board_one, rows, columns, SCORE2)
+    # elif board_one[user_row][user_column] == "X":
+    #     computer_choice(board_one, rows, columns, SCORE2)
+    # return board_one, SCORE2
+
+
+    while True:
+        user_row = int(random.randrange(rows))
+        user_column = int(random.randrange(columns))
+
+        if board_one[int(user_row)][int(user_column)] == ".":
+            break
+        elif board_one[int(user_row)][int(user_column)] == "#":
+            break
+
+    print("Hello there")
+    if board_one[user_row][user_column] == ".":
         board_one[user_row][user_column] = "M"
+        
     elif board_one[user_row][user_column] == '#':
         board_one[user_row][user_column] = "X"
-        SCORE2 = scores2(SCORE2, rows)
-    elif board_one[user_row][user_column] == "M":
-        computer_choice(board_one, rows, columns, SCORE2)
-    elif board_one[user_row][user_column] == "X":
-        computer_choice(board_one, rows, columns, SCORE2)
+        SCORE2 = SCORE2 + 1
+        print(f"This is the correct {SCORE2}")
     return board_one, SCORE2
-
-def scores2(SCORE2, rows):
-    SCORE2 = SCORE2 + 1
-    return SCORE2
 
 def print_board(board, rows):
     print(' ', end=" ")
