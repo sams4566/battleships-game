@@ -1,81 +1,87 @@
-from pprint import pprint
 import random
 
 
 def start_game():
     print("Welcome to Battleships!")
-    player_name = input("Please enter your name:\n")
-    choose_game_type()
+    user_name = input("Please enter your name:\n")
+    choose_game_type(user_name)
 
 
 def no_of_rows():
     while True:
-        rows = input("Please type the number of rows and columns you would like to play with:\n")
-        try:
-            if int(rows) < 4 or int(rows) > 10:
-                f"Please choose a number between 4 - 8"
-        except ValueError as e:
-            print(f"Invalid entry: {e}, please choose a number between 4 - 8\n")
-        
-        if int(rows) >= 4 or int(rows) <= 10:
+        rows1 = input("Please type a number between 4 - 8 to determine size of board you would like to play with:\n")
+       
+        if check_data_input(rows1):
             break
         
-    return int(rows)
-            
+    rows1 = int(rows1)
+    return rows1
+
+def check_data_input(rows1):             
+    try:
+        if int(rows1) < 4 or int(rows1) > 8:
+            raise ValueError(
+                f"Please choose a number between 4 - 8"
+            )
+    except ValueError as e:
+        print(f"Invalid entry: {e}, please choose a number between 4 - 8\n")
+        return False
+
+    return True            
   
-def choose_game_type():
+def choose_game_type(user_name):
     rows = no_of_rows()
-    columns = rows 
-    board_one = user_board(rows, columns)
+    columns = rows
+    board_one = user_board(rows, columns, user_name)
     board_two = computer_board(rows, columns)
     SCORE1 = 0
     SCORE2 = 0
     user_row1 = 0
     user_column1 = 0
+    user_row2 = 0
+    user_column2 = 0
     
     for x in range(100):
-        board_one, SCORE2 = computer_choice(board_one, rows, columns, SCORE2)
-        board_two, SCORE1 = users_choice(board_two, rows, SCORE1)
-    
-
-        print(f"This is your score:{SCORE1}")
-        print(f"This is the Computers score:{SCORE2}")
+        board_one, SCORE2, user_row2, user_column2 = computer_choice(board_one, rows, columns, SCORE2)
+        board_two, SCORE1, user_row1, user_column1 = users_choice(board_two, rows, SCORE1)
 
         print_board(board_one, rows)
-        print("Your Board")
-        print(f"Computer chose coordinates {user_row1}, {user_column1}")
+        print(f"{user_name}\'s ships")
+        print(f"Computer shot at {user_row2}, {user_column2}")
 
 
         print_board2(board_two, rows)
-        print("Computer's Board")
+        print("Computer's ships")
+        print(f"{user_name} shot at {user_row1}, {user_column1}\n")
 
-        print(f"This is your score:{SCORE1}")
-        print(f"This is the Computers score:{SCORE2}")
+        print('\u0332'.join('Current Scores:'))
+        print(f"{user_name}\'s Score: {SCORE1}/{rows * 2} ships sunk")
+        print(f"Computer's score: {SCORE2}/{rows * 2} ships sunk\n")
 
-        if SCORE1 and SCORE2 == rows:
+        if SCORE1 == rows * 2 and SCORE2 == rows * 2:
             print("It's a Draw!")
             start_game()
 
-        if SCORE1 == rows:
+        if SCORE1 == rows * 2:
             print("You Win!")
             start_game()
 
-        if SCORE2 == rows:
+        if SCORE2 == rows * 2:
             print("Computer Wins!")
             start_game()
 
 
-def user_board(rows, columns):
+def user_board(rows, columns, user_name):
     game_board = []
     for y in range(columns):
         game_board_row = []
         for x in range(rows):
             game_board_row.append(".")
         game_board.append(game_board_row)
-    for x in range(12):
+    for x in range(rows * 3):
         calculate_ships(game_board, rows, columns)
     print_board(game_board, rows)
-    print("Your board")
+    print(f"{user_name}\'s board")
     return game_board
 
 def computer_board(rows, columns):
@@ -85,7 +91,7 @@ def computer_board(rows, columns):
         for x in range(rows):
             game_board_row.append(".")
         game_board.append(game_board_row)
-    for x in range(12):
+    for x in range(rows * 3):
         calculate_ships(game_board, rows, columns)
     print_board(game_board, rows)
     print("Computer's board")
@@ -120,15 +126,13 @@ def users_choice(board_two, rows, SCORE1):
     user_row1 = int(user_row1)
     user_column1 = int(user_column1)
 
-    print("Hello there")
     if board_two[user_row1][user_column1] == ".":
         board_two[user_row1][user_column1] = "M"
         
     elif board_two[user_row1][user_column1] == '#':
         board_two[user_row1][user_column1] = "X"
         SCORE1 = SCORE1 + 1
-        print(f"This is the correct {SCORE1}")
-    return board_two, SCORE1
+    return board_two, SCORE1, user_row1, user_column1
         
 def correct_input1(user_row1, rows):
     try:
@@ -155,38 +159,22 @@ def correct_input2(user_column1, rows):
     return True
 
 def computer_choice(board_one, rows, columns, SCORE2):
-    # user_row = int(random.randrange(rows))
-    # user_column = int(random.randrange(columns))
-    # if board_one[user_row][user_column] == '.':
-    #     board_one[user_row][user_column] = "M"
-    # elif board_one[user_row][user_column] == '#':
-    #     board_one[user_row][user_column] = "X"
-    #     SCORE2 = scores2(SCORE2, rows)
-    # elif board_one[user_row][user_column] == "M":
-    #     computer_choice(board_one, rows, columns, SCORE2)
-    # elif board_one[user_row][user_column] == "X":
-    #     computer_choice(board_one, rows, columns, SCORE2)
-    # return board_one, SCORE2
-
-
     while True:
-        user_row = int(random.randrange(rows))
-        user_column = int(random.randrange(columns))
+        user_row2 = int(random.randrange(rows))
+        user_column2 = int(random.randrange(columns))
 
-        if board_one[int(user_row)][int(user_column)] == ".":
+        if board_one[int(user_row2)][int(user_column2)] == ".":
             break
-        elif board_one[int(user_row)][int(user_column)] == "#":
+        elif board_one[int(user_row2)][int(user_column2)] == "#":
             break
 
-    print("Hello there")
-    if board_one[user_row][user_column] == ".":
-        board_one[user_row][user_column] = "M"
+    if board_one[user_row2][user_column2] == ".":
+        board_one[user_row2][user_column2] = "M"
         
-    elif board_one[user_row][user_column] == '#':
-        board_one[user_row][user_column] = "X"
+    elif board_one[user_row2][user_column2] == '#':
+        board_one[user_row2][user_column2] = "X"
         SCORE2 = SCORE2 + 1
-        print(f"This is the correct {SCORE2}")
-    return board_one, SCORE2
+    return board_one, SCORE2, user_row2, user_column2
 
 def print_board(board, rows):
     print(' ', end=" ")
@@ -197,22 +185,25 @@ def print_board(board, rows):
 
     print(' ' + ' ‾' * rows * 2)
 
-def print_board2(board, rows):
-
-    print("The is print_board2") 
+def print_board2(board, rows): 
 
     print(' ', end=" ")
     print(f'{nums_top(rows)}')
 
-    # for x in range(rows):
-    #     for y in range(rows):
-    #         if board[x][y] == "#":
-    #             board[x][y] = "@"
+    for x in range(rows):
+        for y in range(rows):
+            if board[x][y] == "#":
+                board[x][y] = ". "
 
     for row, x in zip(board, range(rows)):
         print(f'{x}| ' + '   '.join(row) + ' |')
 
     print(' ' + ' ‾' * rows * 2)
+
+    for x in range(rows):
+        for y in range(rows):
+            if board[x][y] == ". ":
+                board[x][y] = "#"
     
 def nums_top(rows):
     for x in range(rows):
@@ -225,23 +216,8 @@ def nums_top(rows):
     #             board[x][y] = "#"
 
 
+start_game()
 
-def main():
-    start_game()
-
-main()
-
-# def user_choice():
-
-# def computer_choice():
-
-# def user_hit():
-
-# def computer_hit():
-
-# def user_winner():
-
-# def computer_winner():
 
 
 
