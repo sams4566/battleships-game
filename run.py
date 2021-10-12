@@ -136,7 +136,7 @@ def users_choice(board_two, rows, SCORE1):
         
 def correct_input1(user_row1, rows):
     try:
-        if int(user_row1) > rows or int(user_row1) < 0:
+        if int(user_row1) >= rows or int(user_row1) < 0:
             raise ValueError(
                 f"Please choose a number between 0 - {rows - 1}"
             )
@@ -148,7 +148,7 @@ def correct_input1(user_row1, rows):
 
 def correct_input2(user_column1, rows):
     try:
-        if int(user_column1) > rows or int(user_column1) < 0:
+        if int(user_column1) >= rows or int(user_column1) < 0:
             raise ValueError(
                 f"Please choose a number between 0 - {rows - 1}"
             )
@@ -177,6 +177,7 @@ def computer_choice(board_one, rows, columns, SCORE2):
     return board_one, SCORE2, user_row2, user_column2
 
 def print_board(board, rows):
+
     print(' ', end=" ")
     print(f'{nums_top(rows)}')
     
@@ -209,12 +210,6 @@ def nums_top(rows):
     for x in range(rows):
         print(f'_{rows - (rows - x)}_', end=" ")
     return ''
-
-    # for x in range(rows):
-    #     for y in range(rows):
-    #         if board[x][y] == ".":
-    #             board[x][y] = "#"
-
 
 start_game()
 
