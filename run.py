@@ -78,7 +78,7 @@ def user_board(rows, columns, user_name):
         for x in range(rows):
             game_board_row.append(".")
         game_board.append(game_board_row)
-    for x in range(rows * 3):
+    for x in range(rows * 2):
         calculate_ships(game_board, rows, columns)
     print_board(game_board, rows)
     print(f"{user_name}\'s board")
