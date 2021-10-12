@@ -93,7 +93,7 @@ def computer_board(rows, columns):
         game_board.append(game_board_row)
     for x in range(rows * 3):
         calculate_ships(game_board, rows, columns)
-    print_board(game_board, rows)
+    print_board2(game_board, rows)
     print("Computer's board")
     return game_board
 
@@ -191,21 +191,12 @@ def print_board2(board, rows):
     print(' ', end=" ")
     print(f'{nums_top(rows)}')
 
-    for x in range(rows):
-        for y in range(rows):
-            if board[x][y] == "#":
-                board[x][y] = ". "
-
     for row, x in zip(board, range(rows)):
-        print(f'{x}| ' + '   '.join(row) + ' |')
+        row_copy = [row_char.replace("#", ".") for row_char in row]
+        print(f'{x}| ' + '   '.join(row_copy) + ' |')
 
     print(' ' + ' ‾' * rows * 2)
 
-    for x in range(rows):
-        for y in range(rows):
-            if board[x][y] == ". ":
-                board[x][y] = "#"
-    
 def nums_top(rows):
     for x in range(rows):
         print(f'_{rows - (rows - x)}_', end=" ")
