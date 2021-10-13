@@ -51,7 +51,6 @@ def run_game(user_name):
         print_computer_board(board_two, rows)
 
         print('-' * 36)
-        print('Current Scores:')
         print(f"{user_name}\'s Score: {SCORE1}/{rows * 2 - 2} ships sunk")
         print(f"Computer's score: {SCORE2}/{rows * 2 - 2} ships sunk")
         print('-' * 36)
