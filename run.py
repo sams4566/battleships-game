@@ -41,13 +41,14 @@ def run_game(user_name):
         board_one, SCORE2, user_row2, user_column2 = computer_choice(board_one, rows, columns, SCORE2)
         board_two, SCORE1, user_row1, user_column1 = users_choice(board_two, rows, SCORE1)
 
-        print_user_board(board_one, rows)
+        print('-' * 36)
         print(f"{user_name}\'s board")
         print(f"Computer shot at ({user_row2}, {user_column2})")
+        print_user_board(board_one, rows)
 
-        print_computer_board(board_two, rows)
         print("Computer's board")
         print(f"{user_name} shot at ({user_row1}, {user_column1})")
+        print_computer_board(board_two, rows)
 
         print('-' * 36)
         print('Current Scores:')
@@ -113,8 +114,9 @@ def user_board(rows, columns, user_name):
         game_board.append(game_board_row)
     for x in range(rows * 2 - 2):
         calculate_ships(game_board, rows, columns)
-    print_user_board(game_board, rows)
+    print('-' * 36)
     print(f"{user_name}\'s board")
+    print_user_board(game_board, rows)
     return game_board
 
 def computer_board(rows, columns):
@@ -132,8 +134,8 @@ def computer_board(rows, columns):
         game_board.append(game_board_row)
     for x in range(rows * 2 - 2):
         calculate_ships(game_board, rows, columns)
-    print_computer_board(game_board, rows)
     print("Computer's board")
+    print_computer_board(game_board, rows)
     return game_board
 
 def calculate_ships(game_board, rows, columns):
