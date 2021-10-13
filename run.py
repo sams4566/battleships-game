@@ -2,14 +2,16 @@ import random
 
 
 def start_game():
+    print('-' * 30)
     print("Welcome to Battleships!")
+    print('-' * 30)
     user_name = input("Please enter your name:\n")
     choose_game_type(user_name)
 
 
 def no_of_rows():
     while True:
-        rows1 = input("Please type a number between 4 - 8 to determine size of board you would like to play with:\n")
+        rows1 = input("Board size: Please choose a number between 3 - 6:\n")
        
         if check_data_input(rows1):
             break
@@ -19,12 +21,12 @@ def no_of_rows():
 
 def check_data_input(rows1):             
     try:
-        if int(rows1) < 4 or int(rows1) > 8:
+        if int(rows1) < 3 or int(rows1) > 6:
             raise ValueError(
-                f"Please choose a number between 4 - 8"
+                f"Invalid entry"
             )
     except ValueError as e:
-        print(f"Invalid entry: {e}, please choose a number between 4 - 8\n")
+        print(f"Invalid entry")
         return False
 
     return True            
@@ -108,15 +110,15 @@ def calculate_ships(game_board, rows, columns):
 def users_choice(board_two, rows, SCORE1):
     
     while True:
-        user_row1 = input("Please type the first number of your coordinate:\n")
-        user_column1 = input("Please type the second number of your coordinate:\n")
+        user_row1 = input("Please choose a row:\n")
+        user_column1 = input("Please choose a column:\n")
 
         if correct_input1(user_row1, rows):
             if correct_input2(user_column1, rows):
                 if board_two[int(user_row1)][int(user_column1)] == "X":
-                    print("You have already chosen these coordinate, please choose again!")
-                elif board_two[int(user_row1)][int(user_column1)] == "M":
-                    print("You have already chosen that coordinate, please choose again!")
+                    print("You have already chosen that coordinate!")
+                elif board_two[int(user_row1)][int(user_column1)] == "~":
+                    print("You have already chosen that coordinate!")
                 elif board_two[int(user_row1)][int(user_column1)] == ".":
                     break
                 elif board_two[int(user_row1)][int(user_column1)] == "#":
@@ -126,7 +128,7 @@ def users_choice(board_two, rows, SCORE1):
     user_column1 = int(user_column1)
 
     if board_two[user_row1][user_column1] == ".":
-        board_two[user_row1][user_column1] = "M"
+        board_two[user_row1][user_column1] = "~"
         
     elif board_two[user_row1][user_column1] == '#':
         board_two[user_row1][user_column1] = "X"
@@ -137,10 +139,10 @@ def correct_input1(user_row1, rows):
     try:
         if int(user_row1) >= rows or int(user_row1) < 0:
             raise ValueError(
-                f"Please choose a number between 0 - {rows - 1}"
+                f"Entries must be between 0 - {rows - 1}"
             )
     except ValueError as e:
-        print(f"Invalid entry: {e}, please choose a number between 0 - {rows - 1}\n")
+        print(f"Entries must be between 0 - {rows - 1}")
         return False
     
     return True
@@ -149,10 +151,10 @@ def correct_input2(user_column1, rows):
     try:
         if int(user_column1) >= rows or int(user_column1) < 0:
             raise ValueError(
-                f"Please choose a number between 0 - {rows - 1}"
+                f"Entries must be between 0 - {rows - 1}"
             )
     except ValueError as e:
-        print(f"Invalid entry: {e}, please choose a number between 0 - {rows - 1}\n")
+        print(f"Entries must be between 0 - {rows - 1}")
         return False
     
     return True
@@ -168,7 +170,7 @@ def computer_choice(board_one, rows, columns, SCORE2):
             break
 
     if board_one[user_row2][user_column2] == ".":
-        board_one[user_row2][user_column2] = "M"
+        board_one[user_row2][user_column2] = "~"
         
     elif board_one[user_row2][user_column2] == '#':
         board_one[user_row2][user_column2] = "X"
