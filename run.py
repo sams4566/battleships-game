@@ -12,9 +12,12 @@ def start_game():
 
 def run_game(user_name):
     """
-    Once the number of rows and players boards are collected,
-    a 'for' loop is created to facilitate the user and computer's 
-    choices until all the ships are sunk.
+    Once the number of rows is returned and the players boards are 
+    created, a 'for' loop is created to facilitate the user and 
+    computer's choices until all the ships are sunk.
+
+    Once a winner is established a message is produced and the game 
+    restarts.
     """
     rows = no_of_rows()
     columns = rows
@@ -66,7 +69,7 @@ def run_game(user_name):
 
 def no_of_rows():
     """
-    The while loop determines whether the users input is between max
+    The while loop determines whether the users input is between the max
     and min board sizes of 3 and 6. The number of rows is then returned
     to the run_game function.
     """
@@ -81,7 +84,7 @@ def no_of_rows():
 
 def check_rows_input(rows1):
     """
-    Error messages are provided in the terminal if the inputed entries
+    Error messages are provided in the console if the inputed entries
     are not between 3 and 6.
     """             
     try:
@@ -229,7 +232,8 @@ def correct_input(user_row, rows):
 
 def print_user_board(board, rows):
     """
-    
+    The users board is printed out in a readable way with spaces between the 
+    dots and numbers along the side.
     """
     print(' ', end=" ")
     print(f'{nums_top(rows)}')
@@ -241,6 +245,9 @@ def print_user_board(board, rows):
 
 def print_computer_board(board, rows): 
     """
+    The computers board is printed out in a readable way with spaces between
+    the dots and numbers along the side. The ships are hidden by replacing 
+    the '#' with a '.'.
     """
     print(' ', end=" ")
     print(f'{nums_top(rows)}')
@@ -253,14 +260,11 @@ def print_computer_board(board, rows):
 
 def nums_top(rows):
     """
+    The numbers along the top of the board are evenly spaced with underscores
+    between them.
     """
     for x in range(rows):
         print(f'_{rows - (rows - x)}_', end=" ")
     return ''
 
 start_game()
-
-
-
-
-
