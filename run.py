@@ -47,12 +47,11 @@ def choose_game_type(user_name):
 
         print_board(board_one, rows)
         print(f"{user_name}\'s ships")
-        print(f"Computer shot at {user_row2}, {user_column2}")
-
+        print(f"Computer shot at ({user_row2}, {user_column2})")
 
         print_board2(board_two, rows)
         print("Computer's ships")
-        print(f"{user_name} shot at {user_row1}, {user_column1}\n")
+        print(f"{user_name} shot at ({user_row1}, {user_column1})\n")
 
         print('\u0332'.join('Current Scores:'))
         print(f"{user_name}\'s Score: {SCORE1}/{rows * 2} ships sunk")
