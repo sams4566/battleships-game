@@ -23,7 +23,6 @@ def run_game(user_name):
     columns = rows
     board_one = user_board(rows, columns, user_name)
     board_two = computer_board(rows, columns)
-    print('-' * 36)
     print("Key:")
     print("# = Ship")
     print("X = Hit")
@@ -70,11 +69,11 @@ def run_game(user_name):
 def no_of_rows():
     """
     The while loop determines whether the users input is between the max
-    and min board sizes of 3 and 6. The number of rows is then returned
+    and min board sizes of 3 and 5. The number of rows is then returned
     to the run_game function.
     """
     while True:
-        rows1 = input("Board size: choose a number between 3 - 6:\n")
+        rows1 = input("Board size: choose a number between 3 - 5:\n")
        
         if check_rows_input(rows1):
             break
@@ -85,10 +84,10 @@ def no_of_rows():
 def check_rows_input(rows1):
     """
     Error messages are provided in the console if the inputed entries
-    are not between 3 and 6.
+    are not between 3 and 5.
     """             
     try:
-        if int(rows1) < 3 or int(rows1) > 6:
+        if int(rows1) < 3 or int(rows1) > 5:
             raise ValueError(
                 f"Invalid entry"
             )
