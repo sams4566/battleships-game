@@ -17,7 +17,7 @@ The live link to this game is below:
   - They have the option of choosing three board sizes (either 3x3, 4x4 or 5x5).
   - If the user enters a number that is not 3, 4 or 5 an error message will appear and ask the user to enter a correct value.
 
-![Start Game](https://github.com/sams4566/rock-paper-scissors-lizard-spock/blob/main/media/header.jpg)
+![Start Game](https://github.com/sams4566/battleships-game/blob/main/media/start-game.jpg)
 
 - __Game Boards__
 
@@ -29,7 +29,7 @@ The live link to this game is below:
 ![Game Boards](https://github.com/sams4566/rock-paper-scissors-lizard-spock/blob/main/media/game-options.jpg)
 
 - __Choosing Coordinates__
-  - The user is then prompted to choose a row and then a column to pin-point a dot (‘.’) on the computer’s board. 
+  - The user is then prompted to choose a row and then a column to pin-point a dot (`.`) on the computer’s board. 
   - If the user enters a value outside of the numbers on the board the user will receive an error message and will be prompted to enter another coordinate. 
   - The user will also be prompted to enter a new coordinate if they have already entered that coordinate.
 
@@ -37,8 +37,8 @@ The live link to this game is below:
 
 - __Scoring__
   - Once the user has entered a valid coordinate they are presented with both boards again. 
-  - The user's board has either a ‘X’ (hit) or a ‘~’ (miss) at the position of the computer's chosen coordinate. This coordinate is also printed out above the board to make it clear for the user the exact position.
-  - The computer's board also has either a ‘X’ (hit) or a ‘~’ (miss) at the position of the user’s chosen coordinate. The user’s coordinate is printed above the computer's board.
+  - The user's board has either a `X` (hit) or a `~` (miss) at the position of the computer's chosen coordinate. This coordinate is also printed out above the board to make it clear for the user the exact position.
+  - The computer's board also has either a `X` (hit) or a `~` (miss) at the position of the user’s chosen coordinate. The user’s coordinate is printed above the computer's board.
   - The scores for both users are printed out below the computer's board. After every ‘hit’ the score is increased by 1.
   - The user and computer both continue to pick coordinates until all the ships are ‘hit’.
 
@@ -60,7 +60,7 @@ The live link to this game is below:
   - The below diagram shows how I set out my project before I started coding. This allowed me to work out where to start and what the different parts of the game would be. 
   - I started off the project by getting the name and board size as both of these variables would be filtered through to other functions. 
   - I then created the boards so that I could then work on modifying them.
-  - The run_game function is the main function where all the other functions return back to. Having the ‘for’ loop in this function allowed the game to continue in a circular motion like the diagram below.
+  - The `run_game` function is the main function where all the other functions return back to. Having the `for` loop in this function allowed the game to continue in a circular motion like the diagram below.
 
 ![Data Model](https://github.com/sams4566/rock-paper-scissors-lizard-spock/blob/main/media/collecting-points.jpg)
 
@@ -72,11 +72,11 @@ No errors were returned when passing through PEP8 Online################
 ### Bugs
 #### Solved Bugs 
 
-- I had an issue where a ValueError was crashing the terminal when I inputted the ‘rows’ value as either the ‘row’ or ‘column’ value of the coordinate. Due to the maximum inputtable coordinate value being ‘rows - 1’ (due to the first coordinate starting at ‘0’) I had to change the correct_input functions ‘user_row > rows’ to ‘user_row >= rows’ as shown below: 
+- I had an issue where a ValueError was crashing the terminal when I inputted the `rows` value as either the `row` or `column` value of the coordinate. Due to the maximum inputtable coordinate value being `rows - 1` (due to the first coordinate starting at ‘0’) I had to change the `correct_input` functions `user_row > rows` to `user_row >= rows` as shown below: 
 
   ![Bug1](https://github.com/sams4566/rock-paper-scissors-lizard-spock/blob/main/media/bug1.jpg)
 
-- I had an ‘or’ between SCORE1 and SCORE2 which meant that instead of the winner being announced the draw statement was announced. I changed the ‘or’ to an ‘and’ which resolved the issue as shown below:
+- I had an `or` between SCORE1 and SCORE2 which meant that instead of the winner being announced the draw statement was announced. I changed the `or` to an `and` which resolved the issue as shown below:
 
   ![Bug2](https://github.com/sams4566/rock-paper-scissors-lizard-spock/blob/main/media/bug2.jpg)
 
