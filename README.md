@@ -61,8 +61,6 @@ The live link to this game is below:
   - I then created the boards so that I could then work on modifying them.
   - The `run_game` function is the main function where all the other functions return back to. Having the `for` loop in this function allowed the game to continue in a circular motion like the diagram below.
 
-![Data Model](https://github.com/sams4566/battleships-game/tree/main/media/data-model.jpg)
-
 ## Testing
   - I have tested the code thoroughly on Heroku and the terminal on Gitpod and there are no issues or errors.
   - I have added code that prevents the game from crashing if the user inputs a value that cannot be processed.
