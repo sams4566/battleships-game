@@ -1,6 +1,6 @@
 # Battleships Game
 
-The Battleships Game is an online version of the popular board game, Battleships, where two opponents go head to head to try and sink the other's ships. The game is set up so that each opponent can see their ships but cannot see the others. Each player enters a coordinate and the opponent lets them know if they have ‘hit’ a ship, ‘missed’ a ship or if they have already mentioned that coordinate. 
+The Battleships Game is an online version of the popular board game, Battleships, where two opponents go head to head to try and sink the other's ships. The game is set up so that each opponent can see their own ships but cannot see the others. Each player enters a coordinate and the opponent lets them know if they have ‘hit’ a ship, ‘missed’ a ship or if they have already mentioned that coordinate. 
 
 For this online version the user will have the opportunity to play against the computer and select different game board sizes to increase difficulty and the length of the game. The game is targeted at people who enjoy the original board game and would like to practise against the computer.
 
@@ -47,8 +47,7 @@ The live link to this game is below:
 - __End of Game__
   - Once one or both players ‘hit’ all of their opponents ships a message declaring the winner appears at the bottom. 
   - If the game is a draw, the message declares that both players have lost as there are no ships left.
-  - The game automatically restarts when the winner/losers has been announced.
-
+  - The game automatically restarts when the winner/losers have been announced.
 
 ![End of Game](https://github.com/sams4566/battleships-game/blob/main/media/end-of-game.jpg)
 
