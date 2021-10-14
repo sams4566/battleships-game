@@ -74,7 +74,7 @@ The live link to this game is below:
 
   ![Bug1](https://github.com/sams4566/battleships-game/blob/main/media/bug1.jpg)
 
-- I had an `or` between SCORE1 and SCORE2 which meant that instead of the winner being announced the draw statement was announced. I changed the `or` to an `and` which resolved the issue as shown below:
+- I had an `or` between SCORE1 and SCORE2 which meant that instead of the winner being announced when either the user or computer had won the draw statement was announced. I changed the `or` to an `and` which resolved the issue as shown below:
 
   ![Bug2](https://github.com/sams4566/battleships-game/blob/main/media/bug2.jpg)
 
