@@ -8,7 +8,7 @@ The live link to this game is below:
 #################Battleships Game#########################
 
 
-![Am I Responsive Mockup](https://github.com/sams4566/battleships-game/tree/main/media/am-i-responsive.jpg)
+![Am I Responsive Mockup](https://github.com/sams4566/battleships-game/tree/main/media/am-i-responsive.jp)
 
 ## Features
 - __Start Game__
