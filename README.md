@@ -5,7 +5,7 @@ The Battleships Game is an online version of the popular board game, Battleships
 For this online version the user will have the opportunity to play against the computer and select different game board sizes to increase difficulty and the length of the game. The game is targeted at people who enjoy the original board game and would like to practise against the computer.
 
 The live link to this game is below:
-#################Battleships Game#########################
+[Battleships Game](https://battleships-game1.herokuapp.com/)
 
 ![Am I Responsive Mockup](https://github.com/sams4566/battleships-game/blob/main/media/am-i-responsive.jpg)
 
@@ -65,7 +65,7 @@ The live link to this game is below:
 ## Testing
   - I have tested the code thoroughly on Heroku and the terminal on Gitpod and there are no issues or errors.
   - I have added code that prevents the game from crashing if the user inputs a value that cannot be processed.
-  - No errors were returned when passing through PEP8 Online################
+  - No errors were returned when passing through [PEP8 Online](http://pep8online.com)
 
 ### Bugs
 #### Solved Bugs 
