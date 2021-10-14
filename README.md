@@ -8,7 +8,7 @@ The live link to this game is below:
 #################Battleships Game#########################
 
 
-![Am I Responsive Mockup](https://github.com/sams4566/battleships-game/blob/main/media/am-i-responsive.jpg)
+![Am I Responsive Mockup](https://github.com/sams4566/battleships-game/tree/main/media/am-i-responsive.jpg)
 
 ## Features
 - __Start Game__
@@ -17,7 +17,7 @@ The live link to this game is below:
   - They have the option of choosing three board sizes (either 3x3, 4x4 or 5x5).
   - If the user enters a number that is not 3, 4 or 5 an error message will appear and ask the user to enter a correct value.
 
-![Start Game](https://github.com/sams4566/battleships-game/blob/main/media/start-game.jpg)
+![Start Game](https://github.com/sams4566/battleships-game/tree/main/media/start-game.jpg)
 
 - __Game Boards__
 
@@ -26,14 +26,14 @@ The live link to this game is below:
   - Both boards are clearly labeled and have numbers along the top and left of the board to help the user pick their coordinates.
 
 
-![Game Boards](https://github.com/sams4566/battleships-game/blob/main/media/game-boards.jpg)
+![Game Boards](https://github.com/sams4566/battleships-game/tree/main/media/game-boards.jpg)
 
 - __Choosing Coordinates__
   - The user is then prompted to choose a row and then a column to pin-point a dot (`.`) on the computer’s board. 
   - If the user enters a value outside of the numbers on the board the user will receive an error message and will be prompted to enter another coordinate. 
   - The user will also be prompted to enter a new coordinate if they have already entered that coordinate.
 
-![Choosing Coordinates](https://github.com/sams4566/battleships-game/blob/main/media/choosing-coordinates.jpg)
+![Choosing Coordinates](https://github.com/sams4566/battleships-game/tree/main/media/choosing-coordinates.jpg)
 
 - __Scoring__
   - Once the user has entered a valid coordinate they are presented with both boards again. 
@@ -43,7 +43,7 @@ The live link to this game is below:
   - The user and computer both continue to pick coordinates until all the ships are ‘hit’.
 
 
-![Scoring](https://github.com/sams4566/battleships-game/blob/main/media/scoring.jpg)
+![Scoring](https://github.com/sams4566/battleships-game/tree/main/media/scoring.jpg)
 
 - __End of Game__
   - Once one or both players ‘hit’ all of their opponents ships a message declaring the winner appears at the bottom. 
@@ -51,7 +51,7 @@ The live link to this game is below:
   - The game automatically restarts when the winner/losers has been announced.
 
 
-![End of Game](https://github.com/sams4566/battleships-game/blob/main/media/end-of-game.jpg)
+![End of Game](https://github.com/sams4566/battleships-game/tree/main/media/end-of-game.jpg)
 
 - __Future features__
   - Future features would include playing against a friend on another device and adding in the positions of your own ships. I would also like to add in an option where the user can choose a number of different game board shapes.
@@ -62,7 +62,7 @@ The live link to this game is below:
   - I then created the boards so that I could then work on modifying them.
   - The `run_game` function is the main function where all the other functions return back to. Having the `for` loop in this function allowed the game to continue in a circular motion like the diagram below.
 
-![Data Model](https://github.com/sams4566/battleships-game/blob/main/media/data-model.jpg)
+![Data Model](https://github.com/sams4566/battleships-game/tree/main/media/data-model.jpeg)
 
 ## Testing
   - I have tested the code thoroughly on Heroku and the terminal on Gitpod and there are no issues or errors.
@@ -74,11 +74,11 @@ No errors were returned when passing through PEP8 Online################
 
 - I had an issue where a ValueError was crashing the terminal when I inputted the `rows` value as either the `row` or `column` value of the coordinate. Due to the maximum inputtable coordinate value being `rows - 1` (due to the first coordinate starting at ‘0’) I had to change the `correct_input` functions `user_row > rows` to `user_row >= rows` as shown below: 
 
-  ![Bug1](https://github.com/sams4566/battleships-game/blob/main/media/bug1.jpg)
+  ![Bug1](https://github.com/sams4566/battleships-game/tree/main/media/bug1.jpg)
 
 - I had an `or` between SCORE1 and SCORE2 which meant that instead of the winner being announced the draw statement was announced. I changed the `or` to an `and` which resolved the issue as shown below:
 
-  ![Bug2](https://github.com/sams4566/battleships-game/blob/main/media/bug2.jpg)
+  ![Bug2](https://github.com/sams4566/battleships-game/tree/main/media/bug2.jpg)
 
 #### Unfixed Bugs
 - No unfixed bugs
